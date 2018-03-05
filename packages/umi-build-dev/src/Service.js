@@ -147,7 +147,6 @@ export default class Service {
         }),
       ],
     });
-    return;
     require('af-webpack/dev').default({
       // eslint-disable-line
       webpackConfig,
