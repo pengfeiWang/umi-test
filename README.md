@@ -54,6 +54,18 @@ umi-build-dev
       └── DvaContainer.js // umi-plugin-dva 中的文件提取到 dev中
 ```
 
+# 配置文件
+
+`.umirc.js`
+
+```
+export default {
+  // plugins: [
+  //   'umi-plugin-dva'
+  // ],
+  directoryConfigRoute: 'modules', // 如果 `string` 则会读取目录内容读取 `**/config.js`
+};
+```
 
 
 
