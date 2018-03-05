@@ -1,6 +1,7 @@
 export const ROUTES_CONFIG_FILE = ['src/_routes.json', '_routes.json'];
 export const ROUTE_FILES = ['page.js', 'page.ts', 'page.jsx', 'page.tsx'];
 
+
 export const CONFIG_FILES = ['.umirc.js'];
 export const MOCK_FILE_NAME = ['.umirc.mock.js'];
 export const PAGES_FILE_NAME = 'pages';

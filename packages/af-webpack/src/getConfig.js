@@ -283,6 +283,7 @@ export default function getConfig(opts = {}) {
     // do nothing
   }
 
+
   // 读用户的 eslintrc
   if (existsSync(resolve('.eslintrc'))) {
     try {

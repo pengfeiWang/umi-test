@@ -52,12 +52,10 @@ export default class FilesGenerator {
   }
 
   watch() {
-    console.log('filesGenerator::-55');
     const { paths } = this.service;
     const watcherPaths = this.service.applyPlugins('modifyPageWatchers', {
       initialValue: [paths.absPagesPath],
     });
-    console.log('files-generator-60-watcherPaths:', watcherPaths);
     this.watchers = watcherPaths.map(p => {
       return this.createWatcher(p);
     });

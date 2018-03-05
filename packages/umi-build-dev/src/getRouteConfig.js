@@ -15,8 +15,8 @@ export default function(paths, config = {}) {
     routes = [...getDirConfigRoutes(paths, config)];
   } else {
     routes = routeConfigFile
-      ? getRoutesByConfig(routeConfigFile)
-      : getRoutesByPagesDir(paths);
+    ? getRoutesByConfig(routeConfigFile)
+    : getRoutesByPagesDir(paths);
 
     if (config.exportStatic) {
       routes.forEach(route => {
@@ -34,6 +34,7 @@ export default function(paths, config = {}) {
       });
     }
   }
+
 
   return routes;
 }

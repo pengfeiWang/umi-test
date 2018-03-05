@@ -97,9 +97,9 @@ class UserConfig {
 
     if (files.length > 1) {
       printWarn(
-        `Muitiple config files ${files.join(
-          ', ',
-        )} detected, ${libraryName} will use ${files[0]}.`,
+        `Muitiple config files ${files.join(', ')} detected, ${libraryName} will use ${
+          files[0]
+        }.`,
       );
     }
 
@@ -174,7 +174,9 @@ class UserConfig {
         if (opts.setConfig) {
           opts.setConfig(config);
         }
-        const affixmsg = `选择 "${pluginNames.join(', ')}" 中的一项`;
+        const affixmsg = `选择 "${pluginNames.join(
+          ', ',
+        )}" 中的一项`;
         const guess = didyoumean(key, pluginNames);
         const midMsg = guess ? `你是不是想配置 "${guess}" ？ 或者` : '请';
         const msg = `"${relativeFile}" 中配置的 "${key}" 并非约定的配置项，${midMsg}${affixmsg}`;

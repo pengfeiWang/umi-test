@@ -11,7 +11,6 @@ function template(path) {
 
 export default function(service) {
   const { cwd, tmpDirectory, outputPath, libraryName } = service;
-  console.log('getPath.js::--14', service);
 
   let pagesPath = PAGES_FILE_NAME;
   if (process.env.PAGES_PATH) {

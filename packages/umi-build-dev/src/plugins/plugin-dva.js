@@ -12,22 +12,12 @@ export default function(api) {
   const isProduction = process.env.NODE_ENV === 'production';
 
   function getModels() {
-    const pattern = [
-      'models/*.{ts,js}',
-      relative(api.service.cwd, `${paths.absPagesPath}/**/models/*.{ts,js}`),
-    ];
+    const pattern = ['models/*.{ts,js}', relative(api.service.cwd, `${paths.absPagesPath}/**/models/*.{ts,js}`)];
 
     const modelPaths = globby.sync(pattern, {
       cwd: paths.absSrcPath,
     });
 
-    console.log('===', paths.absPagesPath);
-
-    console.log(
-      'relative modelPaths, ',
-      modelPaths,
-      relative(api.service.cwd, `${paths.absPagesPath}/**/models/*.{ts,js}`),
-    );
 
     return modelPaths
       .map(path =>
@@ -37,7 +27,6 @@ export default function(api) {
       )
       .join('\r\n');
   }
-  console.log('getModels::-dva-29', getModels());
 
   function getPageModels(pageJSFile) {
     const filePath = join(paths.absTmpDirPath, pageJSFile);

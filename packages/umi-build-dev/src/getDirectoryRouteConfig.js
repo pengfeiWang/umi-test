@@ -6,7 +6,6 @@ import { join, /* extname, */ /* basename, */ relative } from 'path';
 // import { PAGES_FILE_NAME } from './constants';
 import winPath from './winPath';
 export default function(paths, config = {}) {
-  console.log('getDirRouteconfig:--9', config, paths);
   // let routes = [];
   const routes = getRoutesByPagesDir(paths);
   if (config.exportStatic) {
@@ -34,7 +33,7 @@ function addHtmlSuffix(path) {
 function replacePath(path) {
   return winPath(path.replace(/\/+/g, '/'));
 }
-function renderPath(modulePath) {
+function renderPath (modulePath) {
   if (modulePath === '') {
     return '';
   }
@@ -42,11 +41,7 @@ function renderPath(modulePath) {
   if (modulePath === 'index' || /index\.jsx?$/.test(modulePath)) {
     return '/';
   }
-  if (
-    /^\.\/[\w]+/.test(modulePath) ||
-    /\/$/.test(modulePath) ||
-    /\./.test(modulePath)
-  ) {
+  if (/^\.\/[\w]+/.test(modulePath) || /\/$/.test(modulePath) || /\./.test(modulePath)) {
     if (/\.jsx?$/.test(modulePath)) {
       return modulePath;
     }
@@ -57,7 +52,6 @@ function renderPath(modulePath) {
 }
 // 目录型
 function getRoutesByPagesDir(paths, dirPath = '') {
-  console.log('getRoutesByPagesDir::', paths);
 
   const { cwd, absPagesPath } = paths;
   let ret = []; // eslint-disable-line
@@ -84,10 +78,7 @@ function getRoutesByPagesDir(paths, dirPath = '') {
               if (!config.routePath) {
                 return [];
               }
-              routeJsonInfo.routeJSON[config.routePath] = {
-                ...config,
-                moduleRoot,
-              };
+              routeJsonInfo.routeJSON[config.routePath] = { ...config, moduleRoot };
 
               // const tmpObj = {
               //   config,
@@ -111,10 +102,12 @@ function getRoutesByPagesDir(paths, dirPath = '') {
 
 function getChildRouteByPagesDir(routeJsonInfo) {
   let ret = [];
-  const { routeJSON, cwd } = routeJsonInfo;
+  const {
+    routeJSON,
+    cwd,
+  } = routeJsonInfo;
   const routeArr = Object.keys(routeJSON);
-  routeArr.forEach(it => {
-    // 通过 key 取 值
+  routeArr.forEach((it) => { // 通过 key 取 值
     ret = ret.concat(getRouteJsonToArray(routeJSON[it], cwd));
   });
   return ret;
@@ -134,24 +127,16 @@ function getRouteJsonToArray(routeItem, cwd) {
   let componentPath = modulePath;
   const filePath = relative(cwd, moduleRoot);
 
-  componentPath = `${filePath}/${renderPath(
-    modulePath,
-    relative(cwd, moduleRoot),
-  )}`;
+  componentPath = `${filePath}/${renderPath(modulePath, relative(cwd, moduleRoot))}`;
   const currentRoot = routePath;
-  function getChild(childrenItem, patentPath = '') {
+  function getChild (childrenItem, patentPath = '') {
     if (!childrenItem.modulePath) return;
     const patentPathLast = patentPath ? `${patentPath}/` : '/';
-    const childModPath = `${filePath}/${renderPath(
-      childrenItem.modulePath,
-      relative(cwd, moduleRoot),
-    )}`;
+    const childModPath = `${filePath}/${renderPath(childrenItem.modulePath, relative(cwd, moduleRoot))}`;
 
     if (childModPath === moduleRoot) return;
     ret.push({
-      path: replacePath(
-        `${currentRoot}/${patentPathLast}${childrenItem.routePath}`,
-      ),
+      path: replacePath(`${currentRoot}/${patentPathLast}${childrenItem.routePath}`),
       exact: true,
       component: childModPath,
     });

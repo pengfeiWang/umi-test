@@ -147,7 +147,7 @@ export default class Service {
         }),
       ],
     });
-    // return;
+    return;
     require('af-webpack/dev').default({
       // eslint-disable-line
       webpackConfig,
@@ -190,7 +190,6 @@ export default class Service {
     this.routes = this.applyPlugins('modifyRoutes', {
       initialValue: getRouteConfig(this.paths, this.config),
     });
-    console.log('this.routes-service-200', this.routes);
   }
 
   initPlugins() {
@@ -290,7 +289,6 @@ export default class Service {
 
     const webpackConfig = getWebpackConfig(this);
     this.webpackConfig = webpackConfig;
-    return;
     return new Promise(resolve => {
       require('af-webpack/build').default({
         // eslint-disable-line
